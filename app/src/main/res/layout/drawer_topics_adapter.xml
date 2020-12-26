@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/_5sdp"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_vertical"
+    app:cardCornerRadius="@dimen/_5sdp">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/item_img"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/_5sdp"
+        android:adjustViewBounds="true" />
+
+
+    <TextView
+        android:id="@+id/topics_name_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_2sdp"
+        android:gravity="center"
+        android:text="Agriculture"
+        android:singleLine="true"
+        android:fontFamily="@font/titilium"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/text_size_18"
+        android:autoSizeMinTextSize="@dimen/text_size_14"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMaxTextSize="@dimen/text_size_16"/>
+</LinearLayout>
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/ic_selected_circle"
+    android:layout_gravity="right"
+    android:id="@+id/selected_img"
+    android:visibility="gone"
+    android:layout_margin="@dimen/_5sdp"/>
+</androidx.cardview.widget.CardView>

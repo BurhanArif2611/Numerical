@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.DashBoardActivity">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@color/primary_text">
+
+            <com.mancj.materialsearchbar.MaterialSearchBar
+                style="@style/MaterialSearchBarLight"
+                app:mt_speechMode="true"
+                app:mt_hint="Search ..."
+                app:mt_maxSuggestionsCount="10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/searchView1"
+                android:visibility="gone"
+                android:focusable="true"
+                android:layout_margin="@dimen/_3sdp"
+                app:mt_backIconDrawable="@drawable/ic_search"
+                android:background="@drawable/only_border"
+                />
+            <RelativeLayout
+                android:id="@+id/badge_layout1"
+                android:layout_width="wrap_content"
+                android:layout_gravity="right"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:id="@+id/relative_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageButton
+                        android:id="@+id/notificans_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_notification"
+                        android:background="@android:color/transparent" />
+                </RelativeLayout>
+                <TextView
+                    android:id="@+id/badge_notification_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@id/relative_layout"
+                    android:background="@drawable/item_count"
+                    android:visibility="visible"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_8sdp"
+                    tools:text="2"/>
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/content_dash_board" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

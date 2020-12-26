@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_cardview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_5sdp"
+    app:elevation="@dimen/_5sdp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/_10sdp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:src="@drawable/ic_notification_bell"
+            app:civ_border_color="@color/colorAccent"
+            app:civ_border_width="@dimen/_1sdp"
+            android:id="@+id/collection_img"
+            android:layout_margin="@dimen/_5sdp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_5sdp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Notification Alert"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_18"
+                android:id="@+id/title_tv"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Notification Alert fvvfvfv fvfvdc  dcsdc dcdscdx cdcdcd"
+                android:id="@+id/body_tv" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

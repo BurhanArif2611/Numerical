@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.FiterPageActivity">
+
+    <include layout="@layout/tool_bar" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/apply_btn"
+        android:layout_below="@+id/tool_bar"
+        android:layout_margin="@dimen/_5sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:fontFamily="@font/titinium_bold"
+                android:text="Topics"
+                android:textSize="@dimen/text_size_18"
+                android:textColor="@color/primary_text" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/topics_rcv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/apply_btn"
+                android:layout_below="@+id/tool_bar"
+                android:layout_margin="@dimen/_5sdp"
+                android:visibility="visible" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@color/gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:fontFamily="@font/titinium_semibold"
+                android:text="Category"
+                android:textSize="@dimen/text_size_18"
+                android:textColor="@color/primary_text" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/sub_topics_rcv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/apply_btn"
+                android:layout_below="@+id/tool_bar"
+                android:layout_margin="@dimen/_5sdp"
+                android:visibility="visible" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/apply_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_background_colour_accent"
+        android:text="Apply"
+        android:textColor="@color/white" />
+</RelativeLayout>
