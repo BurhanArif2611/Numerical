@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -36,6 +37,7 @@ import com.numerical.numerical.Utility.Const;
 import com.numerical.numerical.Utility.ErrorMessage;
 import com.numerical.numerical.Utility.NetworkUtil;
 import com.numerical.numerical.Utility.SavedData;
+import com.numerical.numerical.activity.DashBoardActivity;
 import com.numerical.numerical.activity.LatestFeedDetailActivity;
 import com.numerical.numerical.adapters.Latest_numeruns_Adapter;
 import com.numerical.numerical.adapters.Tags_Adapter;
@@ -92,7 +94,7 @@ public class ListingViewFragment extends Fragment {
     ImageButton menuBtn;
     @BindView(R.id.second_date_tv)
     TextView secondDateTv;
-
+LinearLayout profile;
     private Example example;
 
     @Override
@@ -110,6 +112,7 @@ public class ListingViewFragment extends Fragment {
         describtion_tv = (TextView) view.findViewById(R.id.describtion_tv);
         listDescribtionRv = (RecyclerView) view.findViewById(R.id.list_describtion_rv);
         tagsRv = (RecyclerView) view.findViewById(R.id.tags_rv);
+        profile = (LinearLayout) view.findViewById(R.id.profile);
 
         ((LatestFeedDetailActivity) getActivity()).launchFragmentTitle("Listview");
         if (UserProfileHelper.getInstance().getUserProfileModel().size() > 0) {
@@ -278,6 +281,16 @@ public class ListingViewFragment extends Fragment {
                 } else {
                     PublisherUnfollowOnServer();
                 }
+            }
+        });
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("Calling", "bypublisher");
+                bundle.putString("Id", example.getUser().getId());
+                bundle.putString("Name", example.getUser().getDisplayName());
+                ErrorMessage.I(getActivity(), DashBoardActivity.class, bundle);
             }
         });
         return view;

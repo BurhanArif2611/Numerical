@@ -239,9 +239,10 @@ public class DashBoardActivity extends AppCompatActivity {
                 Id = bundle.getString("Id");
                 Name = bundle.getString("Name");
                 if (Calling.equals("bypublisher")) {
+                    ErrorMessage.E("id"+Id);
                     ByPublisher(Calling, Id, Name);
                 } else if (Calling.equals("Tags")) {
-                    ByTags(Calling, Id, Name);
+                    ByTags(Calling, Id, Name);//5b9e6370cb4b49281e45a9c0
                     FirebaseAnalytics("Select Topic", "Select Topic", "Landing Page");
                 }
             }else if (bundle.getString("Name").equals("")){
@@ -705,7 +706,7 @@ public class DashBoardActivity extends AppCompatActivity {
                             JSONArray jsonArray = new JSONArray(response.body().string());
                             //System.out.println("===response data Summery:" + jsonArray.toString());
                             ErrorMessage.E("response" + jsonArray.toString());
-                            Drawer_topics_Adapter side_rv_adapter = new Drawer_topics_Adapter(DashBoardActivity.this, jsonArray, 1);
+                            Drawer_topics_Adapter side_rv_adapter = new Drawer_topics_Adapter(DashBoardActivity.this, jsonArray, 1,"");
                             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DashBoardActivity.this);
                             topicsRcv.setLayoutManager(linearLayoutManager);
                             topicsRcv.setItemAnimator(new DefaultItemAnimator());

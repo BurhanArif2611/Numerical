@@ -72,7 +72,7 @@ public class FiterPageActivity extends BaseActivity {
                             jsonArray = new JSONArray(response.body().string());
                             //System.out.println("===response data Summery:" + jsonArray.toString());
                             ErrorMessage.E("response" + jsonArray.toString());
-                            Drawer_topics_Adapter side_rv_adapter = new Drawer_topics_Adapter(FiterPageActivity.this, jsonArray, Integer.parseInt(SavedData.getTopic_position()));
+                            Drawer_topics_Adapter side_rv_adapter = new Drawer_topics_Adapter(FiterPageActivity.this, jsonArray, Integer.parseInt(SavedData.getTopic_position()),"fresh");
                             LinearLayoutManager linearLayoutManager = new GridLayoutManager(FiterPageActivity.this, 3);
                             topicsRcv.setLayoutManager(linearLayoutManager);
                             topicsRcv.setItemAnimator(new DefaultItemAnimator());
@@ -115,7 +115,7 @@ public class FiterPageActivity extends BaseActivity {
         Topic_Id=cat_id;
         Topic_name=topic_name;
         SavedData.saveTopic_position(""+position);
-        Drawer_topics_Adapter side_rv_adapter = new Drawer_topics_Adapter(FiterPageActivity.this, jsonArray, position);
+        Drawer_topics_Adapter side_rv_adapter = new Drawer_topics_Adapter(FiterPageActivity.this, jsonArray, position,"Second_click");
         LinearLayoutManager linearLayoutManager = new GridLayoutManager(FiterPageActivity.this, 3);
         topicsRcv.setLayoutManager(linearLayoutManager);
         topicsRcv.setItemAnimator(new DefaultItemAnimator());
@@ -127,7 +127,26 @@ public class FiterPageActivity extends BaseActivity {
         if (jsonArray1.length() > 0) {
             nestedLayout.fullScroll(View.FOCUS_DOWN);
             subTopicsRcv.setVisibility(View.VISIBLE);
-            SubCategory_Adapter subCategory_adapter = new SubCategory_Adapter(FiterPageActivity.this, jsonArray1, position);
+            SubCategory_Adapter subCategory_adapter = new SubCategory_Adapter(FiterPageActivity.this, jsonArray1, "");
+            LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(FiterPageActivity.this, LinearLayoutManager.VERTICAL, false);
+            subTopicsRcv.setLayoutManager(linearLayoutManager1);
+            subTopicsRcv.setItemAnimator(new DefaultItemAnimator());
+            subTopicsRcv.setNestedScrollingEnabled(false);
+            subTopicsRcv.setAdapter(subCategory_adapter);
+            subCategory_adapter.notifyDataSetChanged();
+        } else {
+            subTopicsRcv.setVisibility(View.GONE);
+        }
+
+    }
+    public void onfresh(int position, JSONArray jsonArray1, String cat_id,String topic_name) {
+        categorylist.clear();
+        Topic_Id=cat_id;
+        Topic_name=topic_name;
+        if (jsonArray1.length() > 0) {
+            nestedLayout.fullScroll(View.FOCUS_DOWN);
+            subTopicsRcv.setVisibility(View.VISIBLE);
+            SubCategory_Adapter subCategory_adapter = new SubCategory_Adapter(FiterPageActivity.this, jsonArray1, SavedData.getCat_id());
             LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(FiterPageActivity.this, LinearLayoutManager.VERTICAL, false);
             subTopicsRcv.setLayoutManager(linearLayoutManager1);
             subTopicsRcv.setItemAnimator(new DefaultItemAnimator());

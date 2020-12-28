@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -35,6 +36,7 @@ import com.numerical.numerical.Utility.Const;
 import com.numerical.numerical.Utility.ErrorMessage;
 import com.numerical.numerical.Utility.NetworkUtil;
 import com.numerical.numerical.Utility.SavedData;
+import com.numerical.numerical.activity.DashBoardActivity;
 import com.numerical.numerical.activity.LatestFeedDetailActivity;
 import com.numerical.numerical.database.UserProfileHelper;
 
@@ -112,6 +114,7 @@ public class Standeredview_Adapter extends PagerAdapter {
         TextView numeral_detail_tv = (TextView) views.findViewById(R.id.numeral_detail_tv);
         TextView authore_tv = (TextView) views.findViewById(R.id.authore_tv);
         ImageButton menu_btn = (ImageButton) views.findViewById(R.id.menu_btn);
+        LinearLayout profile = (LinearLayout) views.findViewById(R.id.profile);
         authore_tv.setText(displayName);
 
         if (numeronList.get(position).getActions().size() > 0){
@@ -124,6 +127,16 @@ public class Standeredview_Adapter extends PagerAdapter {
         }
         RecyclerView tagsRv = (RecyclerView) views.findViewById(R.id.tags_rv);
         ErrorMessage.E("assetpath" + numeronList.get(position).getAssetPath());
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("Calling", "bypublisher");
+                bundle.putString("Id", Author_id);
+                bundle.putString("Name",displayName);
+                ErrorMessage.I(context, DashBoardActivity.class, bundle);
+            }
+        });
         menu_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

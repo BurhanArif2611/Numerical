@@ -27,6 +27,7 @@ import com.google.android.play.core.tasks.OnSuccessListener;
 import com.google.android.play.core.tasks.Task;
 import com.numerical.numerical.R;
 import com.numerical.numerical.Utility.ErrorMessage;
+import com.numerical.numerical.Utility.SavedData;
 import com.numerical.numerical.database.UserProfileHelper;
 
 import java.util.ArrayList;
@@ -185,7 +186,8 @@ public class SplashActivity extends AppCompatActivity {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-
+                SavedData.saveCat_id("");
+                SavedData.saveTopic_position("-1");
                 ErrorMessage.I_clear(SplashActivity.this, DashBoardActivity.class, null);
                // ErrorMessage.I_clear(SplashActivity.this, LoginActivity.class, null);
 

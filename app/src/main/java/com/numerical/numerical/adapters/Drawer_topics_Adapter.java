@@ -26,11 +26,13 @@ public class Drawer_topics_Adapter extends RecyclerView.Adapter<Drawer_topics_Ad
     Context context;
     JSONArray jsonArray;
     int Check;
+    String First_Check;
 
-    public Drawer_topics_Adapter(Context context, JSONArray jsonArray, int position) {
+    public Drawer_topics_Adapter(Context context, JSONArray jsonArray, int position,String first_check) {
         this.jsonArray = jsonArray;
         this.context = context;
         this.Check = position;
+        this.First_Check = first_check;
         /* */
     }
 
@@ -45,13 +47,10 @@ public class Drawer_topics_Adapter extends RecyclerView.Adapter<Drawer_topics_Ad
     @Override
     public void onBindViewHolder(@NonNull final Drawer_topics_Adapter.ViewHolder holder, final int position) {
         Example example = null;
-        if (Check == position) {
-            holder.selected_img.setVisibility(View.VISIBLE);
-        } else {
-            holder.selected_img.setVisibility(View.GONE);
-        }
+
         JSONArray jsonArray1 = null;
         String id="";
+
         try {
             //JSONArray jsonArray=new JSONArray(jsonArray);
             JSONObject jsonObject = jsonArray.getJSONObject(position);
@@ -67,6 +66,16 @@ public class Drawer_topics_Adapter extends RecyclerView.Adapter<Drawer_topics_Ad
         }
         JSONArray finalJsonArray = jsonArray1;
         String finalId = id;
+
+        if (Check == position) {
+            if (First_Check.equals("fresh")){
+                ((FiterPageActivity) context).onfresh(position, finalJsonArray, finalId,holder.topics_name_tv.getText().toString());
+
+            }
+            holder.selected_img.setVisibility(View.VISIBLE);
+        } else {
+            holder.selected_img.setVisibility(View.GONE);
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

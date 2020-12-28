@@ -291,7 +291,6 @@ public class LatestFeedDetailActivity extends BaseActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         invalidateOptionsMenu();
         try {
-
             if (example.getIsCollection()) {
                 if (fragmentTitle.equals("Listview")) {
                     menu.findItem(R.id.view_settings).setVisible(true).setIcon(getResources().getDrawable(R.drawable.ic_list_view));

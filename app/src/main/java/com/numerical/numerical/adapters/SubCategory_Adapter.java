@@ -19,17 +19,18 @@ import com.numerical.numerical.R;
 import com.numerical.numerical.activity.FiterPageActivity;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class SubCategory_Adapter extends RecyclerView.Adapter<SubCategory_Adapter.ViewHolder> {
     Context context;
     JSONArray jsonArray;
-    int Check;
+    String Cat_id;
 
-    public SubCategory_Adapter(Context context, JSONArray jsonArray, int position) {
+    public SubCategory_Adapter(Context context, JSONArray jsonArray, String cat_id) {
         this.jsonArray = jsonArray;
         this.context = context;
-        this.Check = position;
+        this.Cat_id = cat_id;
         /* */
     }
 
@@ -48,6 +49,21 @@ public class SubCategory_Adapter extends RecyclerView.Adapter<SubCategory_Adapte
             holder.checkbox.setText(jsonArray.getString(position));
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        if (!Cat_id.equals("")){
+            String[] items = Cat_id.split(",");
+            for (String item : items)
+            {
+                System.out.println("item = " + item);
+                try {
+                    if (item.equals(jsonArray.getString(position))){
+                        holder.checkbox.setChecked(true);
+                        ((FiterPageActivity)context).AddCategory_onList(holder.checkbox.getText().toString());
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
         holder.checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
