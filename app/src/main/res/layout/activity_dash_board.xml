@@ -118,6 +118,9 @@
                     android:layout_margin="@dimen/_5sdp"
                     android:padding="@dimen/_5sdp"
                     android:text="Home"
+                    android:drawableLeft="@drawable/ic_home_colour"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:fontFamily="@font/titilium"
                     android:textColor="@color/primary_text"
                     android:textSize="@dimen/text_size_20"
                     android:id="@+id/home_tv"/>
@@ -135,8 +138,19 @@
                     android:text="My Numerical"
                     android:textColor="@color/primary_text"
                     android:textSize="@dimen/text_size_20"
+                    android:visibility="gone"
                     android:drawableRight="@drawable/ic_menu_add"
                     android:id="@+id/mynumerical_tv"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="My Profile"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:drawableLeft="@drawable/ic_my_profile"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:fontFamily="@font/titilium"
+                    android:textSize="@dimen/text_size_20"
+                    android:textColor="@color/primary_text"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -151,8 +165,32 @@
                     android:text="Help &amp; Support"
                     android:textColor="@color/primary_text"
                     android:textSize="@dimen/text_size_20"
-                    android:id="@+id/helpsupport_tv"/>
-
+                    android:id="@+id/helpsupport_tv"
+                    android:visibility="gone"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Preferences"
+                    android:fontFamily="@font/titilium"
+                    android:drawableLeft="@drawable/ic_preferences"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:textSize="@dimen/text_size_20"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:textColor="@color/primary_text"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Change Password"
+                    android:drawableLeft="@drawable/ic_change_password"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:fontFamily="@font/titilium"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:textSize="@dimen/text_size_20"
+                    android:textColor="@color/primary_text"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -164,6 +202,8 @@
                     android:layout_margin="@dimen/_5sdp"
                     android:padding="@dimen/_5sdp"
                     android:text="Sign Out"
+                    android:drawableLeft="@drawable/ic_sign_out"
+                    android:drawablePadding="@dimen/_5sdp"
                     android:textColor="@color/primary_text"
                     android:textSize="@dimen/text_size_20"
                     android:id="@+id/signout_tv"/>
@@ -183,7 +223,8 @@
     android:fontFamily="@font/titilium"
     android:textColor="@color/primary_text"
     android:textSize="@dimen/text_size_18"
-    android:padding="@dimen/_5sdp"/>
+    android:padding="@dimen/_5sdp"
+    android:visibility="gone"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -215,6 +256,7 @@
                 android:textColor="@color/primary_text"
                 android:fontFamily="@font/titinium_semibold"
                 android:gravity="center"
+                android:visibility="gone"
                 android:layout_gravity="center|bottom" />
 
         </LinearLayout>

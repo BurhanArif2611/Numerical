@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -34,10 +35,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -50,7 +51,6 @@ import com.numerical.numerical.Utility.ErrorMessage;
 import com.numerical.numerical.Utility.NetworkUtil;
 import com.numerical.numerical.Utility.SavedData;
 import com.numerical.numerical.adapters.Drawer_topics_Adapter;
-import com.numerical.numerical.adapters.Topics_Adapter;
 import com.numerical.numerical.database.UserProfileHelper;
 import com.numerical.numerical.fragments.DashboardFragment;
 import com.numerical.numerical.fragments.LikedFragment;
@@ -118,6 +118,8 @@ public class DashBoardActivity extends AppCompatActivity {
     ImageButton twitterBtn;
     @BindView(R.id.topics_rcv)
     RecyclerView topicsRcv;
+    @BindView(R.id.singin_bottom_view)
+    BottomNavigationView singinBottomView;
 
     private View menuItemView;
     private FragmentTransaction mFragmentTransaction;
@@ -131,7 +133,46 @@ public class DashBoardActivity extends AppCompatActivity {
     String LastCall = "";
     private FirebaseAnalytics mFirebaseAnalytics;
 
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.tab_home:
+
+                    /*ErrorMessage.I_clear(DashboardActivity.this, MainActivity.class, null);*/
+                    return true;
+                case R.id.tab_category:
+                  /*  status = false;
+                    vpMain.setCurrentItem(1);
+                    temp = temp.replace("-1", "") + "-1";
+                    titleTv.setText("Category");
+                    ivMenu.setVisibility(View.VISIBLE);
+                    Intent intent = new Intent("favroite");
+                    LocalBroadcastManager.getInstance(DashboardActivity.this).sendBroadcast(intent);*/
+                    return true;
+                case R.id.tab_faverite:
+                  /*  status = false;
+                    vpMain.setCurrentItem(2);
+                    temp = temp.replace("-2", "") + "-2";
+                    titleTv.setText("Favourite");
+                    ivMenu.setVisibility(View.INVISIBLE);
+                    Intent intent1 = new Intent("favroite_main");
+                    LocalBroadcastManager.getInstance(DashboardActivity.this).sendBroadcast(intent1);*/
+                    return true;
+                case R.id.tab_order_history:
+                  /*  status = false;
+                    vpMain.setCurrentItem(3);
+                    temp = temp.replace("-3", "") + "-3";
+                    titleTv.setText("Order History");
+                    ivMenu.setVisibility(View.INVISIBLE);*/
+
+                    return true;
+
+            }
+            return false;
+        }
+    };
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,9 +180,9 @@ public class DashBoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dash_board);
       /*  GetDeviceipWiFiData();
         GetDeviceipMobileData();*/
-
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         ButterKnife.bind(this);
+        singinBottomView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitleTextAppearance(this, R.style.RobotoBoldTextAppearance);
         setSupportActionBar(toolbar);
@@ -199,12 +240,19 @@ public class DashBoardActivity extends AppCompatActivity {
             addFab.setVisibility(View.VISIBLE);
             user_name_tv.setText(UserProfileHelper.getInstance().getUserProfileModel().get(0).getDisplayName());
             user_conatct_tv.setText(UserProfileHelper.getInstance().getUserProfileModel().get(0).getEmaiiId());
+            singinBottomView.setVisibility(View.VISIBLE);
+            singinBottomView.getMenu()
+                    .findItem(R.id.center_tab)
+                    .setVisible(true);
         } else {
             without_signin_layout.setVisibility(View.VISIBLE);
             withoutSigninMenusLayout.setVisibility(View.VISIBLE);
             signin_linlayout.setVisibility(View.GONE);
             withSigninMenusLayout.setVisibility(View.GONE);
             addFab.setVisibility(View.GONE);
+            singinBottomView.getMenu()
+                    .findItem(R.id.center_tab)
+                    .setVisible(false);
         }
         signin_linlayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -239,18 +287,18 @@ public class DashBoardActivity extends AppCompatActivity {
                 Id = bundle.getString("Id");
                 Name = bundle.getString("Name");
                 if (Calling.equals("bypublisher")) {
-                    ErrorMessage.E("id"+Id);
+                    ErrorMessage.E("id" + Id);
                     ByPublisher(Calling, Id, Name);
                 } else if (Calling.equals("Tags")) {
                     ByTags(Calling, Id, Name);//5b9e6370cb4b49281e45a9c0
                     FirebaseAnalytics("Select Topic", "Select Topic", "Landing Page");
                 }
-            }else if (bundle.getString("Name").equals("")){
+            } else if (bundle.getString("Name").equals("")) {
 
-                if (!bundle.getString("categorys").equals("")){
-                    ByTags("Tags",  bundle.getString("categorys"),  bundle.getString("categorys"));
-                }else {
-                    Topics("Topics",bundle.getString("topic_id"),bundle.getString("Topic_name"));
+                if (!bundle.getString("categorys").equals("")) {
+                    ByTags("Tags", bundle.getString("categorys"), bundle.getString("categorys"));
+                } else {
+                    Topics("Topics", bundle.getString("topic_id"), bundle.getString("Topic_name"));
                 }
             }
         } else {
@@ -265,7 +313,7 @@ public class DashBoardActivity extends AppCompatActivity {
             presonalDetailsFragment1.setArguments(bundle1);
             mFragmentTransaction.commitAllowingStateLoss();
         }
-        bottomCardview.setVisibility(View.VISIBLE);
+        bottomCardview.setVisibility(View.GONE);
 
        /* int searchSrcTextId = getResources().getIdentifier("android:id/search_src_text", null, null);
         EditText searchEditText = (EditText) searchView1.findViewById(searchSrcTextId);
@@ -706,7 +754,7 @@ public class DashBoardActivity extends AppCompatActivity {
                             JSONArray jsonArray = new JSONArray(response.body().string());
                             //System.out.println("===response data Summery:" + jsonArray.toString());
                             ErrorMessage.E("response" + jsonArray.toString());
-                            Drawer_topics_Adapter side_rv_adapter = new Drawer_topics_Adapter(DashBoardActivity.this, jsonArray, 1,"");
+                            Drawer_topics_Adapter side_rv_adapter = new Drawer_topics_Adapter(DashBoardActivity.this, jsonArray, 1, "");
                             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DashBoardActivity.this);
                             topicsRcv.setLayoutManager(linearLayoutManager);
                             topicsRcv.setItemAnimator(new DefaultItemAnimator());

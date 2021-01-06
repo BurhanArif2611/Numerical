@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/tab_home"
+        android:icon="@drawable/ic_home"
+        android:title="Home"
+        app:showAsAction="always|withText" />
+
+    <item
+        android:id="@+id/tab_category"
+        android:icon="@drawable/ic_menu_add"
+        android:title="My Numerical"
+        app:showAsAction="always|withText" />
+
+    <item
+        android:id="@+id/center_tab"
+        android:title=""
+        android:visible="true"
+        app:showAsAction="always|withText" />
+
+    <item
+        android:id="@+id/tab_faverite"
+        android:icon="@drawable/ic_search"
+        android:title="Search"
+        app:showAsAction="always|withText" />
+
+    <item
+        android:id="@+id/tab_order_history"
+        android:icon="@drawable/ic_guidepost"
+        android:title="Guided"
+        app:showAsAction="always|withText" />
+
+</menu>

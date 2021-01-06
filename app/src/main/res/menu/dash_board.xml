@@ -43,6 +43,11 @@
                 android:icon="@drawable/ic_like"
                 android:title="Liked"
                 app:showAsAction="ifRoom" />
+            <item
+                android:id="@+id/category_art"
+                android:icon="@drawable/ic_categories"
+                android:title="Category"
+                app:showAsAction="ifRoom" />
 
 
         </menu>

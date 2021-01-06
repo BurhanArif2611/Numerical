@@ -12,26 +12,17 @@
         android:id="@+id/fragmentsLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_cardview" />
+        android:layout_above="@+id/singin_bottom_view" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/_25sdp"
-        android:src="@drawable/ic_add_color"
-        android:scaleType="center"
-        app:fabSize="normal"
-        app:backgroundTint="@color/colorAccent"/>
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/bottom_cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:elevation="@dimen/_5sdp">
+        android:elevation="@dimen/_5sdp"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,4 +47,39 @@
                 android:id="@+id/bottom_search_tv"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/singin_bottom_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:theme="@style/BottomNavigationView"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
+        app:itemBackground="@drawable/selecter_background"
+        app:itemIconTint="@color/gray"
+        app:itemTextColor="@color/gray"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/home_page_new_menu" />
+    </LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_25sdp"
+        android:src="@drawable/ic_add_color"
+        android:scaleType="center"
+        app:fabSize="normal"
+        app:backgroundTint="@color/colorAccent"/>
 </RelativeLayout>
